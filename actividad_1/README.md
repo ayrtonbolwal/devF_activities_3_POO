@@ -12,6 +12,7 @@ Crear un algoritmo para obtener el país con mayor número de letras a partir de
 
 [Pseudocódigo](https://github.com/ayrtonbolwal/devF_activities_3_POO/blob/main/actividad_1/actividad_1.txt)
 
+```
 Inicio
 Leer String paises = ["México", "Guatemala", "El Salvador","Panamá"]
     Int palabraMayor = paises[0]
@@ -29,24 +30,25 @@ Leer String paises = ["México", "Guatemala", "El Salvador","Panamá"]
 
     imprimir palabraMayor
 Fin
+```
 
 
 ## Diagrama de Flujo
 
 ![1697734189488](image/README/1697734189488.png)
 
-
 ## Código de Js
 
 [Código de JS](https://github.com/ayrtonbolwal/devF_activities_3_POO/blob/main/actividad_1/script.js)
 
-letpaises= ["México","Guatemala","El Salvador","Panamá"];
+```
+let paises= ["México","Guatemala","El Salvador","Panamá"];
 
-letpalabraMayor=paises[0]
+let palabraMayor=paises[0]
 
-letcantidadLetrasMayor=palabraMayor.length;
+let cantidadLetrasMayor=palabraMayor.length;
 
-letcantidadLetras=0;
+let cantidadLetras=0;
 
 for(leti=0;i<paises.length;i++){
 
@@ -63,3 +65,4 @@ for(leti=0;i<paises.length;i++){
 }
 
 console.log(palabraMayor);
+```
