@@ -1,0 +1,17 @@
+Inicio
+Leer String paises = ["México", "Guatemala", "El Salvador","Panamá"]
+    Int palabraMayor = paises[0]
+    Int cantidadLetrasMayor = palabraMayor.length
+    Int cantidadLetras = 0
+    Int i = 0
+
+    desde i < paises.length entonces:
+        cantidadLetras = paises[i].length
+        si cantidadLetras > cantidadLetrasMayor entonces:
+            palabraMayor = paises[i]
+            cantidadLetrasMayor = cantidadLetras
+        i++
+    fin_desde
+
+    imprimir palabraMayor
+Fin
