@@ -1,0 +1,41 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+
+    height: 100vh;
+}
+
+main{
+    margin-top: 4rem;
+    width: 90vw;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2rem;
+
+    padding: 2rem;
+
+    border: solid 1px;
+}
+main .grupos{
+    width: 100% ;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+main .target{
+    border: 1px solid;
+    border-radius: 10px;
+    padding: .5rem;
+    cursor: pointer;
+}

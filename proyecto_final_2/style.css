@@ -1,0 +1,117 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-color: #232a3f;
+    color: white;
+    font-family: sans-serif;
+}
+button{
+    cursor: pointer;
+}
+
+#addAlumnoComponent{
+    position: absolute;
+
+    width: 500px;
+    height: fit-content;
+    border: solid 1px white;
+    border-radius: 10px;
+    padding: 2rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+#addAlumnoComponent .sectionNombre{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+}
+#addAlumnoComponent .sectionNombre label{
+    width: 100px;
+}
+#addAlumnoComponent .sectionNombre input{
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+    background-color: #12121250;
+    border: 1px #202a35 solid;
+    width: 100%;
+    color: white;
+}
+#addAlumnoComponent .sectionApellidos{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+}
+#addAlumnoComponent .sectionApellidos label{
+    width: 100px;
+}
+#addAlumnoComponent .sectionApellidos input{
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+    background-color: #12121250;
+    border: 1px #202a35 solid;
+    width: 100%;
+    color: white;
+}
+#addAlumnoComponent .sectionButtons{
+    margin-top: 2rem;
+    align-self: flex-end;
+    justify-self: flex-end;
+    display: flex;
+    gap: 1rem;
+}
+#addAlumnoComponent #sectionMaterias{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    width: 100%;
+}
+#addAlumnoComponent #sectionMaterias .itemMateria{
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+}
+#addAlumnoComponent #sectionMaterias .itemMateria .inputNombreMateria{
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+    background-color: #12121250;
+    border: 1px #202a35 solid;
+    width: 100%;
+    color: white;
+}
+
+.btnDeleteMateria{
+    width: 100px;
+    height: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    background-color: rgb(182, 69, 69);
+    border: none;
+}
+.primaryBtn{
+    width: 100px;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    background-color: #2e77ff;
+    border: none;
+}
+#btnAddAlumno{
+    align-self: flex-end;
+    justify-self: flex-end;
+}
