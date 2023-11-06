@@ -1,0 +1,144 @@
+A
+B           C     
+D     E     F     G
+H  I  J  K  L  M  N  O
+
+1 while1    => El nodo actual tiene contenido? No es raíz que es A      ✅ (A)
+            => La pila es mayora 0? Si                                  ❌ []
+
+            1 while2 => El nodo actual (A) tiene contenido? Si          ✅
+                pilaAuxiliar.push(nodoActual) => A => [A]
+                nodoActual = nodoActual.nodoIzquierdo =>  B             🔸 nodoActual = B
+
+            2 while2 => El nodo actual (B) tiene contenido? Si          ✅
+                pilaAuxiliar.push(nodoActual) => B => [A, B]
+                nodoActual = nodoActual.nodoIzquierdo =>  D             🔸 nodoActual = D
+
+            3 while2 => El nodo actual (D) tiene contenido? Si          ✅
+                pilaAuxiliar.push(nodoActual) => D => [A, B, D]         
+                nodoActual = nodoActual.nodoIzquierdo =>  H             🔸 nodoActual = H
+
+            4 while2 => El nodo actual (H) tiene contenido? Si          ✅
+                pilaAuxiliar.push(nodoActual) => D => [A, B, D, H]         
+                nodoActual = nodoActual.nodoIzquierdo =>  null          🔸 nodoActual = null
+
+            5 while2 => El nodo actual (null) tiene contenido? No       ❌
+                SE CIERRA CICLO WHILE2 🔵
+            
+            nodoActual = pilaAuxiliar.pop(); => [A, B, D, H👀] => H
+            console.log(nodoActual) =>  H
+            nodoActual => nodoActual.nodoDerecho => null                🔸 nodoActual = null  / pilaAuxiliar => [A, B, D]
+
+-----------------------------------------------------------------------------------
+
+2 while1    => El nodo actual (null) tiene contenido? No, es null       ❌
+            => La pila es mayora 0? Si                                  ✅ [A, B, D] 
+
+            1 while2 => El nodo actual (null) tiene contenido? No       ❌
+                SE CIERRA CICLO WHILE2 🔵
+            
+            nodoActual = pilaAuxiliar.pop(); => [A, B, D👀] => D
+            console.log(nodoActual) =>  D
+            nodoActual => nodoActual.nodoDerecho => I                   🔸 nodoActual = I  / pilaAuxiliar => [A, B]
+
+-----------------------------------------------------------------------------------
+
+2 while1    => El nodo actual (I) tiene contenido? Si, es I             ✅  I
+            => La pila es mayora 0? Si                                  ✅  [A, B]
+
+            1 while2 => El nodo actual (I) tiene contenido? Si          ✅
+                pilaAuxiliar.push(nodoActual) => I => [A, B, I]
+                nodoActual = nodoActual.nodoIzquierdo =>  null          🔸 nodoActual = null
+
+            2 while2 => El nodo actual (null) tiene contenido? No       ❌
+                SE CIERRA CICLO WHILE2 🔵
+
+            nodoActual = pilaAuxiliar.pop(); => [A, B, I👀] => I
+            console.log(nodoActual) =>  I
+            nodoActual => nodoActual.nodoDerecho => null                🔸 nodoActual = null  / pilaAuxiliar => [A, B]
+
+-----------------------------------------------------------------------------------
+
+3 while1    => El nodo actual (null) tiene contenido? No, es null       ❌
+            => La pila es mayora 0? Si                                  ✅ [A, B] 
+
+            1 while2 => El nodo actual (null) tiene contenido? No       ❌
+                SE CIERRA CICLO WHILE2 🔵
+
+            nodoActual = pilaAuxiliar.pop(); => [A, B👀] => B
+            console.log(nodoActual) =>  B
+            nodoActual => nodoActual.nodoDerecho => E                   🔸 nodoActual = null  / pilaAuxiliar => [A]
+
+-----------------------------------------------------------------------------------
+
+4 while1    => El nodo actual (E) tiene contenido? Si, es E             ✅  E
+            => La pila es mayora 0? Si                                  ✅  [A]
+
+            1 while2 => El nodo actual (E) tiene contenido? Si          ✅
+                pilaAuxiliar.push(nodoActual) => E => [A, E]
+                nodoActual = nodoActual.nodoIzquierdo =>  J             🔸 nodoActual = J
+
+            2 while2 => El nodo actual (J) tiene contenido? Si          ✅
+                pilaAuxiliar.push(nodoActual) => J => [A, E, J]
+                nodoActual = nodoActual.nodoIzquierdo =>  null          🔸 nodoActual = null
+
+            3 while2 => El nodo actual (null) tiene contenido? No       ❌
+                SE CIERRA CICLO WHILE2 🔵
+
+            nodoActual = pilaAuxiliar.pop(); => [A, E, J👀] => J
+            console.log(nodoActual) =>  J
+            nodoActual => nodoActual.nodoDerecho => K                   🔸 nodoActual = K  / pilaAuxiliar => [A, E]
+
+-----------------------------------------------------------------------------------
+
+4 while1    => El nodo actual (K) tiene contenido? Si, es K             ✅  K
+            => La pila es mayora 0? Si                                  ✅  [A, E]
+
+            1 while2 => El nodo actual (K) tiene contenido? Si          ✅
+                pilaAuxiliar.push(nodoActual) => K => [A, E, K]
+                nodoActual = nodoActual.nodoIzquierdo =>  null          🔸 nodoActual = null
+            
+            2 while2 => El nodo actual (null) tiene contenido? No       ❌
+                SE CIERRA CICLO WHILE2 🔵
+
+            nodoActual = pilaAuxiliar.pop(); => [A, E, K👀] => K
+            console.log(nodoActual) =>  K
+            nodoActual => nodoActual.nodoDerecho => null                🔸 nodoActual = null  / pilaAuxiliar => [A, E]
+
+--------------------------------------------------------------------------------
+
+5 while1    => El nodo actual (null) tiene contenido? No, es null       ❌
+            => La pila es mayora 0? Si                                  ✅ [A, E] 
+
+            1 while2 => El nodo actual (null) tiene contenido? No       ❌
+                SE CIERRA CICLO WHILE2 🔵
+
+            nodoActual = pilaAuxiliar.pop(); => [A, E👀] => E
+            console.log(nodoActual) =>  E
+            nodoActual => nodoActual.nodoDerecho => K                   🔸 nodoActual = K  / pilaAuxiliar => [A]
+
+--------------------------------------------------------------------------------
+
+5 while1    => El nodo actual (K) tiene contenido? Si, es K             ✅
+            => La pila es mayora 0? Si                                  ✅ [A] 
+
+            1 while2 => El nodo actual (K) tiene contenido? Si          ✅
+                pilaAuxiliar.push(nodoActual) => K => [A, K]
+                nodoActual = nodoActual.nodoIzquierdo =>  null          🔸 nodoActual = null
+
+            nodoActual = pilaAuxiliar.pop(); => [A, K👀] => K
+            console.log(nodoActual) =>  K
+            nodoActual => nodoActual.nodoDerecho => null                🔸 nodoActual = null  / pilaAuxiliar => [A]
+
+--------------------------------------------------------------------------------
+
+6 while1    => El nodo actual (null) tiene contenido? No, es null       ❌
+            => La pila es mayora 0? Si                                  ✅ [A] 
+
+            1 while2 => El nodo actual (K) tiene contenido? Si          ✅
+                pilaAuxiliar.push(nodoActual) => K => [A, K]
+                nodoActual = nodoActual.nodoIzquierdo =>  null          🔸 nodoActual = null
+
+            nodoActual = pilaAuxiliar.pop(); => [A, K👀] => K
+            console.log(nodoActual) =>  K
+            nodoActual => nodoActual.nodoDerecho => null                🔸 nodoActual = null  / pilaAuxiliar => [A]
