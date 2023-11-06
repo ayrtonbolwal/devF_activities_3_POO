@@ -1,186 +1,350 @@
-// Clase Nodo
-
 class Nodo{
     constructor(valor){
         this.valor = valor;
-        this.nodoIzquierdo = null;
-        this.nodoDerecho = null;
+        this.izquierdo = null;
+        this.derecho = null;
     }
 }
 
 class Arbol{
-
     constructor(){
         this.raiz = null;
     }
 
     insertar(valor){
-
         if(this.raiz == null){
-            /* Si el nodo raíz está vacío entonces guardamos el valor que
-            nos proporcionó el usuario en este lugar.  */
             const nuevoNodo = new Nodo(valor);
             this.raiz = nuevoNodo;
         } else {
-            /* Si el nodo raiz se encuentra ocupado
-            entonces creamos una variable de seguimiento llamada
-            nodoActual y le pasaremos el valor de la raíz. */
-            
             let nodoActual = this.raiz;
-
+            
             while(true){
                 if(valor < nodoActual.valor){
-                /* Si el valor otorgado por el usuario es
-                menor que el valor del nodo actual, entonces: */
-
-                    if(nodoActual.nodoIzquierdo == null){
-                        /* Si el nodoActual.nodoIzquierdo está vacío entonces
-                        creamos un nuevo nodo y lo guardamos aquí, y salimos.  */
+                    if(nodoActual.izquierdo == null){
                         let nuevoNodo = new Nodo(valor);
-                        nodoActual.nodoIzquierdo = nuevoNodo;
+                        nodoActual.izquierdo = nuevoNodo;
                         return;
-
                     } else {
-                        /* Sii el nodoActual.nodoIzquierdo está ocupado, entonces
-                        este nodo será nuestro nuevo nodo actual y salimos.  */
-                        nodoActual = nodoActual.nodoIzquierdo;
-
+                        nodoActual = nodoActual.izquierdo;
+                    }
+                } else {
+                    if(nodoActual.derecho ==  null){
+                        let nuevoNodo = new Nodo(valor);
+                        nodoActual.derecho = nuevoNodo;
+                        return;
+                    } else {
+                        nodoActual = nodoActual.derecho;
                     }
                 }
-
-                if(valor >= nodoActual.valor){
-                /* Si el valor otorgado por el usuario es mayor que
-                o igual que el valor del nodoActual entonces: */
-
-                    if(nodoActual.nodoDerecho == null){
-                        /* Si el nodoDerecho de nuestro nodoActual está vacío entonces
-                        creamos un nuevo objeto Nodo y lo guardamos aquí. */
-                        let nuevoNodo = new Nodo(valor);
-                        nodoActual.nodoDerecho = nuevoNodo;
-                        return;
-
-                    } else {
-                        /* Si el nodoDerecho de nuestro objeto no está vacío entonces
-                        el nodoDerecho de nuestro nodoActual, pasará a ser nuestro nodoActual. */
-                        nodoActual = nodoActual.nodoDerecho;
-
-                    }
-
-                }
-
             }
-
         }
-
     }
 
     buscar(valor){
-        /* Creamos una variable de seguimiento: */
         let nodoActual = this.raiz;
-        
-        /* Si el nodo raíz es nulo entonces devolvemos falso.*/
-        if(this.raiz == null){
+
+        if(nodoActual == null){
             return false;
         }
 
-        /* Mientras el nodoActual no esté vacío, verificamos
-        si su valor es igual al valor, en caso de ser así entonces 
-        retornamos true.*/
         while(nodoActual != null){
-
-            /* Si el valor es el que estamos buscando entonces retornamos true.*/
             if(nodoActual.valor == valor){
                 return true;
             }
 
-            /* Si el valor no se encuentra entonces verificará si el valor es menor
-            o mayor igual al valor del nodoActual, si es menor entonces pasaremo al nodo
-            izquierdo si es mayor o igual seguro se encuentra en el nodoDerecho. */
             if(valor < nodoActual.valor){
-                nodoActual = nodoActual.nodoIzquierdo;
-            }
-            if(valor >= nodoActual.valor){
-                nodoActual = nodoActual.nodoDerecho;
+                nodoActual = nodoActual.izquierdo;
+            } else {
+                nodoActual = nodoActual.derecho;
             }
         }
+
+        return false;
     }
 
-    desplegarInOrden(){
-
-        /* La primera parte se encarga de mandar un mensaje inOrden, para después verificar si la raíz está vacía en caso de estarlo se acaba la función.  */
-        console.log('InOrden: ');
+    inorden(){
+        console.log('Inorden:');
 
         if(this.raiz == null){
             return;
         }
 
-        /* La segunda parte se encarga de que al nodoActual le pasamos el valor del nodo Raíz para después crear una pilaAuxiliar en la que guardaremos el recorrido de nuestros nodos. */
         let nodoActual = this.raiz;
         const pilaAuxiliar = [];
 
-        let i = 0;
-        let j = 0;
-
-        /* La tercera parte es un recorrido, mientras la pila auxiliar no esté vacía o el nodoActual no esté vacío: se encargará de hacer un bucle que mientras el nodoActual no esté vacío vamos a guardar el nodoActual en un arreglo y nuestro nodoActual pasará a ser el nodoIzquierdo.
-        
-        Una vez nos decisimos de todos los nodos izquierdos */
-        while(nodoActual != null || pilaAuxiliar.length > 0){
-            j = 0;
-            
-            console.log(`🐱 ${i} While1`);
-            
+        while(nodoActual !== null || pilaAuxiliar.length > 0){
             while(nodoActual != null){
-                console.log(`🐟   ${j} While2: El nodo actual es: ${nodoActual.valor}`);
                 pilaAuxiliar.push(nodoActual);
-                console.log(`Se hace push a la pila, la pila es: ${pilaAuxiliar}`);
-                nodoActual = nodoActual.nodoIzquierdo;
-                j++;
+                nodoActual = nodoActual.izquierdo;
             }
 
-            console.log(`Se cierra el ciclo while2 🔵 el arreglo es: ${pilaAuxiliar}`);
+            nodoActual = pilaAuxiliar.pop();
+            console.log(`${nodoActual.valor}`);
+            nodoActual = nodoActual.derecho;
+        }
+    }
+
+    preorden(){
+        console.log('Preorden:');
+
+        if(this.raiz == null){
+            return;
+        }
+
+        let nodoActual = this.raiz;
+        const pilaAuxiliar = [];
+
+        while(nodoActual !== null || pilaAuxiliar.length > 0){
+            while(nodoActual != null){
+                pilaAuxiliar.push(nodoActual);
+                console.log(`${nodoActual.valor}`);
+                nodoActual = nodoActual.izquierdo;
+            }
 
             nodoActual = pilaAuxiliar.pop();
-            console.log(`Eliminamos el último valor del arreglo, es: ${nodoActual.valor}, la pila queda: ${pilaAuxiliar}`);
-            console.log(`${nodoActual.valor}`);
-            nodoActual = nodoActual.nodoDerecho;
+            nodoActual = nodoActual.derecho;
+        }
+    }
+
+    postorden(){
+        console.log('PostOrden:');
+
+        if(this.raiz == null){
+            return;
+        }
+
+        const pilaAuxiliar1 = [];
+        const pilaAuxiliar2 = [];
+        pilaAuxiliar1.push(this.raiz);
+
+        while(pilaAuxiliar1.length > 0){
+            const nodoActual = pilaAuxiliar1.pop();
+            pilaAuxiliar2.push(nodoActual);
+
+            if(nodoActual.izquierdo !== null) {
+                pilaAuxiliar1.push(nodoActual.izquierdo);
+            }
+            if(nodoActual.derecho !== null) {
+                pilaAuxiliar1.push(nodoActual.derecho);
+            }
+        }
+        
+
+        while(pilaAuxiliar2.length > 0){
+            const nodo = pilaAuxiliar2.pop();
+            console.log(`${nodo.valor}`)
+        }
+    }
+
+    // 1.- Escribe una función que dados dos árboles binarios A y B, determine si son idénticos o no.
+    compararArboles(arbolB){
+        let arbolComparar = arbolB;
+        let getPilaA = () => {
+            let pilaUtilidadA = [];
+
+            if(this.raiz == null){
+                return;
+            }
+
+            let nodoActual = this.raiz;
+            const pilaAuxiliar = [];
+    
+            while(nodoActual !== null || pilaAuxiliar.length > 0){
+                while(nodoActual != null){
+                    pilaAuxiliar.push(nodoActual);
+                    nodoActual = nodoActual.izquierdo;
+                }
+    
+                nodoActual = pilaAuxiliar.pop();
+                pilaUtilidadA.push(nodoActual.valor);
+                nodoActual = nodoActual.derecho;
+            }
+
+            return pilaUtilidadA;
+        };
+        let getPilaB = (arbolComparar) => {
+            let pilaUtilidadB = [];
+
+            if(arbolComparar.raiz == null){
+                return;
+            }
+
+            let nodoActual = arbolComparar.raiz;
+            const pilaAuxiliar = [];
+    
+            while(nodoActual !== null || pilaAuxiliar.length > 0){
+                while(nodoActual != null){
+                    pilaAuxiliar.push(nodoActual);
+                    nodoActual = nodoActual.izquierdo;
+                }
+    
+                nodoActual = pilaAuxiliar.pop();
+                pilaUtilidadB.push(nodoActual.valor);
+                nodoActual = nodoActual.derecho;
+            }
+
+            return pilaUtilidadB;
+        };
+
+        let pilaUtilidadA = getPilaA();
+        console.log(pilaUtilidadA);
+        let pilaUtilidadB = getPilaB(arbolB);
+        console.log(pilaUtilidadB);
+
+        let diferencia = false;
+        let i = 0;
+
+        if(pilaUtilidadA.length == pilaUtilidadB.length){
+            while((diferencia == false) && i < pilaUtilidadA.length){
+                if(pilaUtilidadA[i] == pilaUtilidadB[i]){
+                    diferencia = false;
+                } else {
+                    diferencia = true;
+                }
+                i++;
+            }
+
+            if(diferencia == false){
+                console.log('Los árboles son idénticos');
+            } else {
+                console.log('Los árboles tienen diferencias');
+            }
+        } else {
+            console.log('Los árboles tienen diferencias.')
+        }
+
+    }
+
+    // 2.- Escribe una función que dado un árbol binario A, obtenga una copia B del mismo.
+    copiarArbol(){
+        let getPreOrden = () => {
+            let pila = [];
+
+            if(this.raiz == null){
+                return;
+            }
+    
+            let nodoActual = this.raiz;
+            const pilaAuxiliar = [];
+    
+            while(nodoActual !== null || pilaAuxiliar.length > 0){
+                while(nodoActual != null){
+                    pilaAuxiliar.push(nodoActual);
+                    pila.push(nodoActual.valor);
+                    nodoActual = nodoActual.izquierdo;
+                }
+    
+                nodoActual = pilaAuxiliar.pop();
+                nodoActual = nodoActual.derecho;
+            }
+
+            return pila;
+        }
+
+        let pilaUtilidadPreOrden = getPreOrden();
+        let i = 0;
+        let arbolCopia = new Arbol();
+
+        while(i < pilaUtilidadPreOrden.length){
+            arbolCopia.insertar(pilaUtilidadPreOrden[i]);
             i++;
         }
 
-        console.log(`Se cierra el ciclo while1 🔵`);
+        return arbolCopia;
     }
 
-    desplegarPreOrden(){
+    // 3.- Escribe una función que visualice los nodos que están en el nivel n de un árbol binario.
+     
 
+    // 4.- Escribe una función que devuelva el número de hojas de un árbol binario. 
+    devolverHojas(){
+        const pilaArbolA = () => {
+            if(this.raiz == null){
+                return;
+            }
+    
+            let nodoActual = this.raiz;
+            const pilaAuxiliar = [];
+            let pilaA = [];
+    
+            while(nodoActual !== null || pilaAuxiliar.length > 0){
+                while(nodoActual != null){
+                    pilaAuxiliar.push(nodoActual);
+                    nodoActual = nodoActual.izquierdo;
+                }
+    
+                nodoActual = pilaAuxiliar.pop();
+                if((nodoActual.izquierdo == null) && (nodoActual.derecho == null)){
+                    if(pilaA.indexOf(nodoActual.valor) === -1){
+                        pilaA.push(nodoActual.valor);
+                    }
+                }
+                nodoActual = nodoActual.derecho;
+            }
+
+            return pilaA;
+        }
+
+        let pilaHojas = pilaArbolA();
+
+        console.log(`La cantidad de hojas del arbol son: ${pilaHojas.length} y son ${pilaHojas}`);
     }
 
 }
 
-const miArbol = new Arbol();
-miArbol.insertar(10);
-miArbol.insertar(5);
-miArbol.insertar(15);
-miArbol.insertar(3);
-miArbol.insertar(7);
-miArbol.insertar(13);
-miArbol.insertar(17);
-miArbol.insertar(1);
-miArbol.insertar(4);
-miArbol.insertar(6);
-miArbol.insertar(8);
-miArbol.insertar(12);
-miArbol.insertar(14);
-miArbol.insertar(16);
-miArbol.insertar(18);
 
-console.log(miArbol.raiz);
-console.log(miArbol.desplegarInOrden());
+/*
 
-// Ejercicio 1. Escribe una función que dados dos árboles binarios determine si son idénticos o no.
+10
+5               15
+3       8       12      17
+2   4   7   9   11  13  16  18
 
+*/
 
-// Ejercicio 2. Escribe una función que dado un arbol binario A, obtenga una copia B del mismo. 
+const nuevoArbol = new Arbol();
 
+nuevoArbol.insertar(10);
+nuevoArbol.insertar(5);
+nuevoArbol.insertar(15);
+nuevoArbol.insertar(3);
+nuevoArbol.insertar(8);
+nuevoArbol.insertar(12);
+nuevoArbol.insertar(17);
+nuevoArbol.insertar(2);
+nuevoArbol.insertar(4);
+nuevoArbol.insertar(7);
+nuevoArbol.insertar(9);
+nuevoArbol.insertar(11);
+nuevoArbol.insertar(13);
+nuevoArbol.insertar(16);
+nuevoArbol.insertar(18);
 
-// Ejercicio 3. Escribe una función que visualice los tnodos que están en el nivel "n" de un árbol binario. 
+const nuevoArbolB = new Arbol();
 
-// Ejercicio 4. Escribe una función que devuelva el número de hojas de un árbol binario. 
+nuevoArbolB.insertar(10);
+nuevoArbolB.insertar(5);
+nuevoArbolB.insertar(15);
+nuevoArbolB.insertar(3);
+nuevoArbolB.insertar(8);
+nuevoArbolB.insertar(12);
+nuevoArbolB.insertar(17);
+nuevoArbolB.insertar(2);
+nuevoArbolB.insertar(4);
+nuevoArbolB.insertar(7);
+nuevoArbolB.insertar(9);
+nuevoArbolB.insertar(11);
+nuevoArbolB.insertar(13);
+nuevoArbolB.insertar(16);
+nuevoArbolB.insertar(18);
+
+console.log(nuevoArbol);
+
+nuevoArbol.compararArboles(nuevoArbolB);
+
+/* Instancia devolver cantidad de Hojas */
+nuevoArbol.devolverHojas();
+/* Instancia copiar árbol */
+const nuevoArbolC = nuevoArbol.copiarArbol();
+/* Instancia comparar arboles */
+nuevoArbol.compararArboles(nuevoArbolC);
